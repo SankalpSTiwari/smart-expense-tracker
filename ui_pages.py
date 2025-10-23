@@ -166,6 +166,12 @@ def show_view_expenses_page(manager):
         # Delete expense section
         st.markdown("---")
         with st.expander("🗑️ Delete Expense"):
+            # Show valid ID range
+            if df_display is not None and not df_display.empty:
+                min_id = df_display['id'].min()
+                max_id = df_display['id'].max()
+                st.caption(f"💡 Valid IDs in current view: {min_id} to {max_id}")
+            
             expense_id = st.number_input("Expense ID", min_value=1, step=1, key="delete_id")
             if st.button("Delete", type="primary"):
                 result = manager.delete_expense(expense_id)
@@ -274,7 +280,14 @@ def show_analytics_page(analytics):
         fig = ui.create_line_chart(df, 'month', 'total', 'Monthly Spending Pattern')
         st.plotly_chart(fig, use_container_width=True)
     else:
-        st.info(trend['message'])
+        st.info(f"📊 {trend['message']}")
+        st.markdown("""
+        **💡 Tip:** To enable trend analysis, add expenses from previous months:
+        - Run `python3 add_sample_data.py` to add 6 months of sample data
+        - Or manually add expenses with dates from previous months
+        
+        Trend analysis requires at least 2 months of expense data.
+        """)
     
     st.markdown("---")
     

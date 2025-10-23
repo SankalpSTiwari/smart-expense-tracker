@@ -259,16 +259,16 @@ class Analytics:
         prediction = self.predict_monthly_spending()
         if prediction['days_passed'] >= 5:
             if prediction['projected_monthly_total'] > prediction['last_month_total'] * 1.2:
+                projected = prediction['projected_monthly_total']
+                last_month = prediction['last_month_total']
                 insights.append(
-                    f"⚠️ At the current rate, you're projected to spend "
-                    f"${prediction['projected_monthly_total']:.2f} this month, "
-                    f"which is significantly higher than last month (${prediction['last_month_total']:.2f})."
+                    f"⚠️ At the current rate, you're projected to spend ${projected:.2f} this month, which is significantly higher than last month (${last_month:.2f})."
                 )
             elif prediction['projected_monthly_total'] < prediction['last_month_total'] * 0.8:
+                projected = prediction['projected_monthly_total']
+                last_month = prediction['last_month_total']
                 insights.append(
-                    f"✅ You're on track to spend less this month! "
-                    f"Projected: ${prediction['projected_monthly_total']:.2f} vs "
-                    f"Last month: ${prediction['last_month_total']:.2f}"
+                    f"✅ You're on track to spend less this month! Projected: ${projected:.2f} vs Last month: ${last_month:.2f}"
                 )
         
         # Weekend vs weekday spending
