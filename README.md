@@ -2,6 +2,27 @@
 
 A powerful and intelligent expense tracking application built with Python that helps you manage your finances with ease. Track expenses, set budgets, analyze spending patterns, and get smart insights about your financial habits.
 
+## 🎨 Two Interfaces Available
+
+### 🌐 Web UI (Recommended for daily use)
+Beautiful, modern web interface with:
+- 📊 Real-time dashboard with interactive charts
+- 📱 Works on desktop, tablet, and mobile
+- 🎭 Dark/light mode support
+- ⚡ Instant updates and live data
+- 🎨 Intuitive, user-friendly design
+
+**Start Web UI:** `streamlit run app.py`
+
+### 💻 CLI (Command-line interface)
+Traditional terminal interface for:
+- 🚀 Automation and scripting
+- 🖥️ Server environments
+- ⚡ Quick operations
+- 📊 Chart generation to files
+
+**Start CLI:** `python3 main.py`
+
 ## ✨ Features
 
 ### 📝 Core Features
