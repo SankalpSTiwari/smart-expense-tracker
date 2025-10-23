@@ -14,27 +14,63 @@ def apply_custom_css():
     """Apply custom CSS styling to the app"""
     st.markdown("""
         <style>
+        /* Main container */
         .main {
             padding: 0rem 1rem;
         }
+        
+        /* Metrics styling - works in both light and dark mode */
         .stMetric {
-            background-color: #f0f2f6;
+            background-color: rgba(28, 131, 225, 0.1);
             padding: 15px;
             border-radius: 10px;
+            border: 1px solid rgba(28, 131, 225, 0.2);
         }
+        
+        /* Ensure metric labels are visible */
+        .stMetric label {
+            color: inherit !important;
+            font-weight: 600 !important;
+        }
+        
+        /* Ensure metric values are visible */
+        .stMetric [data-testid="stMetricValue"] {
+            color: inherit !important;
+            font-size: 1.5rem !important;
+            font-weight: 700 !important;
+        }
+        
+        /* Metric delta */
+        .stMetric [data-testid="stMetricDelta"] {
+            color: inherit !important;
+        }
+        
+        /* Success message */
         .success-message {
             padding: 10px;
-            background-color: #d4edda;
+            background-color: rgba(40, 167, 69, 0.1);
             border-left: 5px solid #28a745;
             margin: 10px 0;
             border-radius: 5px;
+            color: inherit;
         }
+        
+        /* Warning message */
         .warning-message {
             padding: 10px;
-            background-color: #fff3cd;
+            background-color: rgba(255, 193, 7, 0.1);
             border-left: 5px solid #ffc107;
             margin: 10px 0;
             border-radius: 5px;
+            color: inherit;
+        }
+        
+        /* Dark mode specific adjustments */
+        @media (prefers-color-scheme: dark) {
+            .stMetric {
+                background-color: rgba(28, 131, 225, 0.15);
+                border: 1px solid rgba(28, 131, 225, 0.3);
+            }
         }
         </style>
         """, unsafe_allow_html=True)
