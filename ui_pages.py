@@ -166,13 +166,22 @@ def show_view_expenses_page(manager):
         # Delete expense section
         st.markdown("---")
         with st.expander("🗑️ Delete Expense"):
-            # Show valid ID range
+            # Show valid ID range and set default
             if df_display is not None and not df_display.empty:
-                min_id = df_display['id'].min()
-                max_id = df_display['id'].max()
+                min_id = int(df_display['id'].min())
+                max_id = int(df_display['id'].max())
                 st.caption(f"💡 Valid IDs in current view: {min_id} to {max_id}")
+                default_id = min_id
+            else:
+                default_id = 1
             
-            expense_id = st.number_input("Expense ID", min_value=1, step=1, key="delete_id")
+            expense_id = st.number_input(
+                "Expense ID", 
+                min_value=1, 
+                value=default_id,
+                step=1, 
+                key="delete_id"
+            )
             if st.button("Delete", type="primary"):
                 result = manager.delete_expense(expense_id)
                 if result['success']:
